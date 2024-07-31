@@ -15,10 +15,8 @@ const int Mapping[] = {
 char getSoundexCode(char c) {
     c = toupper(c);
     if (c < 'A' || c > 'Z') {
-        return '0'; 
-    }
-    return Mapping[c - 'A'] + '0';
-}
+        return '0'; }
+    return Mapping[c - 'A'] + '0';}
 
 void generateSoundex(const char *name, char *soundex) {
     int len = strlen(name);
@@ -28,15 +26,9 @@ void generateSoundex(const char *name, char *soundex) {
     for (int i = 1; name[i] !='\0' && sIndex < 4; i++) {
         char code = getSoundexCode(name[i]);
         if (code != '0' && code != soundex[sIndex - 1]) {
-            soundex[sIndex++] = code;
-        }
-    }
-
+            soundex[sIndex++] = code;}}
     while (sIndex < 4) {
-        soundex[sIndex++] = '0';
-    }
-
-    soundex[4] = '\0';
-}
+        soundex[sIndex++] = '0';}
+    soundex[4] = '\0';}
 
 #endif // SOUNDEX_H
