@@ -39,5 +39,5 @@ void generateSoundex(const char *name, char *soundex) {
         char code = getSoundexCode(name[i]);
        sIndex = updateSoundex(code, sIndex, soundex);}
   endSoundex(sIndex, soundex);
-
+}
 #endif // SOUNDEX_H
