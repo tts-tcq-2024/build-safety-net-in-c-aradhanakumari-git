@@ -6,7 +6,7 @@
 #include <string.h>
 
 //ABCDEFGHIJKLMNOPQRSTUVWXYZ
-const int Mapping[] = {
+const int Mapping[26] = {
     0, 1, 2, 3, 0, 1, 2, 0, 0, 2,
     2, 4, 5, 5, 0, 1, 2, 6, 2, 3,
     0, 1, 0, 2, 0, 2             
@@ -23,7 +23,7 @@ void generateSoundex(const char *name, char *soundex) {
     soundex[0] = toupper(name[0]);
     int sIndex = 1;
     int i = 1;
-    for (i = 1; (name[i] !='\0' && sIndex < 4); i++) {
+    for (i = 1; (i<len && sIndex < 4); i++) {
         char code = getSoundexCode(name[i]);
         if (code != '0' && code != soundex[sIndex - 1]) {
             soundex[sIndex++] = code;}}
