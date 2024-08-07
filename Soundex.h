@@ -18,6 +18,18 @@ char getSoundexCode(char c) {
         return '0'; }
     return Mapping[c - 'A'] + '0';}
 
+void endSoundex(int sIndex, char *soundex){
+    while (sIndex < 4) {
+        soundex[sIndex++] = '0';
+    }
+    soundex[4] = '\0';
+}
+int updateSoundex(char code, int sIndex, char *soundex){
+    if (code != '0' && code != soundex[sIndex - 1]) {
+        soundex[sIndex++] = code;
+    }
+    return sIndex;
+}
 void generateSoundex(const char *name, char *soundex) {
     int len = strlen(name);
     soundex[0] = toupper(name[0]);
@@ -25,10 +37,7 @@ void generateSoundex(const char *name, char *soundex) {
     int i = 1;
     for (i = 1; (i<len && sIndex < 4); i++) {
         char code = getSoundexCode(name[i]);
-        if (code != '0' && code != soundex[sIndex - 1]) {
-            soundex[sIndex++] = code;}}
-    while (sIndex < 4) {
-        soundex[sIndex++] = '0';}
-    soundex[4] = '\0';}
+       sIndex = updateSoundex(code, sIndex, soundex);
+  endSoundex(sIndex, soundex);
 
 #endif // SOUNDEX_H
